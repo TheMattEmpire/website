@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>TheMattEmpire</b> Projects & Folio</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+      <a href="#about" class="w3-bar-item w3-button">About</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="images/splash.jpg" alt="Splash" width="1500" height="200">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>BR</b></span> <span class="w3-hide-small w3-text-light-grey">Architects</span></h1>
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1564px">
+
+  <!-- Project Section -->
+  <div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
+  </div>
+
+<!-- =========================
+     STATIC GRID SECTION
+     ========================= -->
+<div class="w3-row-padding">
+
+  <div class="w3-col l3 m6 w3-margin-bottom">
+    <a href="meteors.html" class="portfolio-card">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">
+          Meteors Project
+        </div>
+        <img src="images/Project_Meteors.jpg" alt="Meteors">
+      </div>
+    </a>
+  </div>
+
+  <div class="w3-col l3 m6 w3-margin-bottom">
+    <a href="brick.html" class="portfolio-card">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">
+          Brick House
+        </div>
+        <img src="images/Project_Meteors.jpg" alt="Brick">
+      </div>
+    </a>
+  </div>
+
+    <div class="w3-col l3 m6 w3-margin-bottom">
+    <a href="brick.html" class="portfolio-card">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">
+          Brick House
+        </div>
+        <img src="images/Project_Meteors.jpg" alt="Brick">
+      </div>
+    </a>
+  </div>
+</div>
+
+ <!-- FOLIO SECTION -->
+  <div class="w3-container w3-padding-32" id="folio">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Folio</h3>
+  </div>
+
+<div class="gallery-wrapper">
+  <button class="gallery-btn left" onclick="scrollGallery(-1)">
+    &#10094;
+  </button>
+
+  <div class="gallery-container" id="gallery">
+
+    <div class="gallery-item">
+      <a href="meteors.html" class="portfolio-card">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Meteors</div>
+          <img src="images/Project_Meteors.jpg">
+        </div>
+      </a>
+    </div>
+
+    <div class="gallery-item">
+      <a href="brick.html" class="portfolio-card">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Brick</div>
+          <img src="images/Project_Meteors.jpg">
+        </div>
+      </a>
+    </div>
+
+    <div class="gallery-item">
+      <a href="renovated.html" class="portfolio-card">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Renovated</div>
+          <img src="images/Project_Meteors.jpg">
+        </div>
+      </a>
+    </div>
+
+    <div class="gallery-item">
+      <a href="barn.html" class="portfolio-card">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Barn</div>
+          <img src="images/Project_Meteors.jpg">
+        </div>
+      </a>
+    </div>
+
+    <div class="gallery-item">
+      <a href="modern.html" class="portfolio-card">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Modern</div>
+          <img src="images/Project_Meteors.jpg">
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <button class="gallery-btn right" onclick="scrollGallery(1)">
+    &#10095;
+  </button>
+
+</div>
+
+<!-- DOTS -->
+<div class="dot-container" id="dots"></div>
+
+  <!-- About Section -->
+  
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+    <p><b>TheMattEmpire</b> is a <b>Solo Game Developer</b> that is taking everything he has learned <b>over 25 years</b> of <b>Design</b> and <b>Education</b> to create <b>unique digital experiences</b> including <b>VR/XR games</b> as well as <b>Overlay Experiences</b> for the Desktop. <br><br>Matt has experience in Game development, Installation design, Toy concepting, 3D Previsualization, Web design, and Graphic Design. In regards to 3D assets he has the full skillset including 3D Modelling, Sculpting, Retopology, UV Unwrapping, Texturing, (basic) Rigging, and Animation.<br><br>At the moment he is working on an Asteroids-Like experience in VR/XR as well as a productivity app that is an Overlay of your desktop offering a task list that can feed a pet dragon.
+    </p>
+  </div>
+  <div class="w3-row-padding w3-grayscale">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+
+    <img src="images/Biopic.jpg" alt="Matt" style="width:100%">
+      <h3>Matt Marshall</h3>
+      <p class="w3-opacity">Solo Game Developer</p>
+      <p>Uploading all his knowledge to the ether hoping to help others achieve their digital experience dreams, and his own in the meantime.</p>
+      <p><a href="mailto:themattempireis@gmail.com" class="w3-button w3-light-grey w3-block">Contact</a></p>
+  </a>
+</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>TheMattEmpire | <a href="https://www.youtube.com/@themattempire42" title="YouTube Channel" target="_blank" class="w3-hover-text-green">YouTube Channel</a> - <a href="https://www.twitch.tv/themattempire42" title="Twitch Channel" target="_blank" class="w3-hover-text-green">Twitch Channel</a> - <a href="https://themattempire.gitbook.io/documentation" title="GameDev Docs" target="_blank" class="w3-hover-text-green">GameDev Docs</a></p>
+</footer>
+
+</body>
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ <style>
+ /* =========================
+   DOTS STYLE
+   ========================= */
+
+ .dot-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+
+  background-color: #bbb;
+  border-radius: 50%;
+
+  display: inline-block;
+  cursor: pointer;
+
+  transition: background 0.3s;
+}
+
+.dot.active {
+  background-color: #333;
+}
+
+/* =========================
+   GLOBAL CARD STYLE
+   ========================= */
+
+.portfolio-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+
+/* smooth zoom */
+.portfolio-card img {
+  width: 100%;
+  display: block;
+
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.portfolio-card:hover img {
+  transform: scale(1.04);
+}
+
+/* =========================
+   CAROUSEL
+   ========================= */
+
+.gallery-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1px;
+}
+
+.gallery-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+}
+
+.gallery-container::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-item {
+  flex: 0 0 25%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* arrows */
+.gallery-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
+
+  border: none;
+  padding: 14px 18px;
+
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.gallery-btn.left { left: 10px; }
+.gallery-btn.right { right: 10px; }
+
+.gallery-btn:hover {
+  background: rgba(0,0,0,0.9);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .gallery-item { flex: 0 0 50%; }
+}
+
+@media (max-width: 480px) {
+  .gallery-item { flex: 0 0 100%; }
+}
+
+  </style>
+
+  <script>
+const gallery = document.getElementById("gallery");
+const dotsContainer = document.getElementById("dots");
+
+let index = 0;
+let startX = 0;
+
+// how many "pages" of 4 items
+function getPageCount() {
+  return Math.ceil(gallery.children.length / 4);
+}
+
+// scroll to page
+function goToPage(i) {
+  const max = getPageCount() - 1;
+
+  index = Math.max(0, Math.min(i, max));
+
+  const scrollAmount = gallery.clientWidth;
+  gallery.scrollTo({
+    left: index * scrollAmount,
+    behavior: "smooth"
+  });
+
+  updateDots();
+}
+
+// arrows
+function scrollGallery(dir) {
+  goToPage(index + dir);
+}
+
+// dots
+function createDots() {
+  const count = getPageCount();
+
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+
+    dot.addEventListener("click", () => goToPage(i));
+
+    dotsContainer.appendChild(dot);
+  }
+
+  updateDots();
+}
+
+function updateDots() {
+  const dots = document.querySelectorAll(".dot");
+
+  dots.forEach((d, i) => {
+    d.classList.toggle("active", i === index);
+  });
+}
+
+// swipe support (mobile)
+gallery.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+gallery.addEventListener("touchend", (e) => {
+  let endX = e.changedTouches[0].clientX;
+  let diff = startX - endX;
+
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) {
+      goToPage(index + 1);
+    } else {
+      goToPage(index - 1);
+    }
+  }
+});
+
+// init
+createDots();
+</script>
+
+</html>
