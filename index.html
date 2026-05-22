@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<title>W3.CSS Template</title>
+<title>TheMattEmpire | Projects & Folio</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="w3.css">
@@ -15,18 +15,25 @@
     <!-- Float links to the right. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
       <a href="#projects" class="w3-bar-item w3-button">Projects</a>
-      <a href="#about" class="w3-bar-item w3-button">About</a>
+      <a href="#folio" class="w3-bar-item w3-button">Folio</a>
+      <a href="#about" class="w3-bar-item w3-button">About Me</a>
       <a href="#contact" class="w3-bar-item w3-button">Contact</a>
     </div>
   </div>
 </div>
 
 <!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="images/splash.jpg" alt="Splash" width="1500" height="200">
-  <div class="w3-display-middle w3-margin-top w3-center">
-    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>BR</b></span> <span class="w3-hide-small w3-text-light-grey">Architects</span></h1>
+<header class="w3-display-container w3-content w3-wide hero" id="home">
+
+  <img class="overlay-gif w3-display-middle" src="images/AnimatedLogo.gif" width="200" height="200">
+
+  <div class="bottom-links">
+    <a href="#projects">Projects</a> |
+    <a href="#folio">Folio</a> |
+    <a href="#about">About Me</a> |
+    <a href="#contact">Contact</a>
   </div>
+
 </header>
 
 <!-- Page content -->
@@ -34,7 +41,7 @@
 
   <!-- Project Section -->
   <div class="w3-container w3-padding-32" id="projects">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Projects | WIP or Completed</h3>
   </div>
 
 <!-- =========================
@@ -43,34 +50,34 @@
 <div class="w3-row-padding">
 
   <div class="w3-col l3 m6 w3-margin-bottom">
-    <a href="meteors.html" class="portfolio-card">
+    <a href="project_meteors.html" class="portfolio-card">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black w3-padding">
-          Meteors Project
+          Meteors
         </div>
-        <img src="images/Project_Meteors.jpg" alt="Meteors">
+        <img src="images/Project_Meteors.jpg" alt="Meteors Project">
       </div>
     </a>
   </div>
 
   <div class="w3-col l3 m6 w3-margin-bottom">
-    <a href="brick.html" class="portfolio-card">
+    <a href="https://themattempire.itch.io/desktopdicetray" class="portfolio-card">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black w3-padding">
-          Brick House
+          Desktop Dicetray
         </div>
-        <img src="images/Project_Meteors.jpg" alt="Brick">
+        <img src="images/Project_DesktopDicetray.jpg" alt="DesktopDicetray">
       </div>
     </a>
   </div>
 
     <div class="w3-col l3 m6 w3-margin-bottom">
-    <a href="brick.html" class="portfolio-card">
+    <a href="https://themattempire.itch.io/mouki" class="portfolio-card">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black w3-padding">
-          Brick House
+          Mouki
         </div>
-        <img src="images/Project_Meteors.jpg" alt="Brick">
+        <img src="images/Project_Mouki.jpg" alt="Mouki">
       </div>
     </a>
   </div>
@@ -78,7 +85,7 @@
 
  <!-- FOLIO SECTION -->
   <div class="w3-container w3-padding-32" id="folio">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Folio</h3>
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Folio | Completed</h3>
   </div>
 
 <div class="gallery-wrapper">
@@ -89,46 +96,73 @@
   <div class="gallery-container" id="gallery">
 
     <div class="gallery-item">
-      <a href="meteors.html" class="portfolio-card">
+      <a href="folio_tank.html" class="portfolio-card">
         <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Meteors</div>
-          <img src="images/Project_Meteors.jpg">
+          <div class="w3-display-topleft w3-black w3-padding">Tank</div>
+          <img src="images/Folio_Tank.jpg">
         </div>
       </a>
     </div>
 
     <div class="gallery-item">
-      <a href="brick.html" class="portfolio-card">
+      <a href="folio_mustang.html" class="portfolio-card">
         <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Brick</div>
-          <img src="images/Project_Meteors.jpg">
+          <div class="w3-display-topleft w3-black w3-padding">Hover Mustang</div>
+          <img src="images/Folio_HoverMustang.jpg">
         </div>
       </a>
     </div>
 
     <div class="gallery-item">
-      <a href="renovated.html" class="portfolio-card">
+      <a href="folio_caleb.html" class="portfolio-card">
         <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Renovated</div>
-          <img src="images/Project_Meteors.jpg">
+          <div class="w3-display-topleft w3-black w3-padding">Crit Role - Caleb</div>
+          <img src="images/Folio_Caleb.jpg">
         </div>
       </a>
     </div>
 
     <div class="gallery-item">
-      <a href="barn.html" class="portfolio-card">
+      <a href="folio_thug.html" class="portfolio-card">
         <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Barn</div>
-          <img src="images/Project_Meteors.jpg">
+          <div class="w3-display-topleft w3-black w3-padding">Customizeable Thug</div>
+          <img src="images/Folio_Thug.jpg">
         </div>
       </a>
     </div>
 
     <div class="gallery-item">
-      <a href="modern.html" class="portfolio-card">
+      <a href="folio_mersharr.html" class="portfolio-card">
         <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Modern</div>
-          <img src="images/Project_Meteors.jpg">
+          <div class="w3-display-topleft w3-black w3-padding">Miniature Tabaxi</div>
+          <img src="images/Folio_Mersharr.jpg">
+        </div>
+      </a>
+    </div>
+
+    <div class="gallery-item">
+      <a href="folio_freelance.html" class="portfolio-card">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Freelance Digital Design</div>
+          <img src="images/Folio_CosmicLab.jpg">
+        </div>
+      </a>
+    </div>
+
+    <div class="gallery-item">
+      <a href="folio_hexgallery.html" class="portfolio-card">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Hex Gallery - Web Environment</div>
+          <img src="images/Folio_Revenant.jpg">
+        </div>
+      </a>
+    </div>
+
+    <div class="gallery-item">
+      <a href="folio_optimisedcars.html" class="portfolio-card">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Low Poly Cars</div>
+          <img src="images/Folio_OptimisedCars.jpg">
         </div>
       </a>
     </div>
@@ -147,18 +181,17 @@
   <!-- About Section -->
   
   <div class="w3-container w3-padding-32" id="about">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About Me</h3>
     <p><b>TheMattEmpire</b> is a <b>Solo Game Developer</b> that is taking everything he has learned <b>over 25 years</b> of <b>Design</b> and <b>Education</b> to create <b>unique digital experiences</b> including <b>VR/XR games</b> as well as <b>Overlay Experiences</b> for the Desktop. <br><br>Matt has experience in Game development, Installation design, Toy concepting, 3D Previsualization, Web design, and Graphic Design. In regards to 3D assets he has the full skillset including 3D Modelling, Sculpting, Retopology, UV Unwrapping, Texturing, (basic) Rigging, and Animation.<br><br>At the moment he is working on an Asteroids-Like experience in VR/XR as well as a productivity app that is an Overlay of your desktop offering a task list that can feed a pet dragon.
     </p>
   </div>
   <div class="w3-row-padding w3-grayscale">
     <div class="w3-col l3 m6 w3-margin-bottom">
-
-    <img src="images/Biopic.jpg" alt="Matt" style="width:100%">
+    <p><a href="mailto:themattempireis@gmail.com" class="w3-button w3-light-grey w3-block" id="contact">Contact</a></p>
+    <img src="images/Biopic.jpg" alt="Matt" style="width="200" height="200">
       <h3>Matt Marshall</h3>
       <p class="w3-opacity">Solo Game Developer</p>
-      <p>Uploading all his knowledge to the ether hoping to help others achieve their digital experience dreams, and his own in the meantime.</p>
-      <p><a href="mailto:themattempireis@gmail.com" class="w3-button w3-light-grey w3-block">Contact</a></p>
+      
   </a>
 </p>
     </div>
@@ -292,6 +325,37 @@
 
 @media (max-width: 480px) {
   .gallery-item { flex: 0 0 100%; }
+}
+
+.hero {
+  position: relative;
+  max-width: 1500px;
+  height: 260px;
+  background: url("images/splash.jpg") center/cover no-repeat;
+  overflow: hidden;
+}
+
+/* bottom nav */
+.bottom-links {
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 16px;
+  z-index: 3;
+}
+
+/* link styling */
+.bottom-links a {
+  color: black;
+  text-decoration: none;
+  padding: 0 8px;
+  font-weight: 500;
+}
+
+.bottom-links a:hover {
+  text-decoration: underline;
 }
 
   </style>

@@ -1,0 +1,965 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>TheMattEmpire | PBR Lowpoly Flying Mustang</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+</head>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: white;
+  color: #111;
+}
+
+/* =========================
+   HEADER / LAYOUT
+========================= */
+
+.page-header {
+  text-align: center;
+  padding: 5px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   MAIN IMAGE
+========================= */
+
+.main-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mainImage {
+  width: 80%;
+  max-width: 1000px;
+  transition: opacity 0.25s ease;
+  display: block;
+  cursor: zoom-in;
+}
+
+/* NAV ARROWS */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.35);
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 20;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, transform 0.2s, opacity 0.2s;
+}
+
+.nav-arrow:hover {
+  background: rgba(0,0,0,0.55);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.left-arrow { left: 20px; }
+.right-arrow { right: 20px; }
+
+/* CAPTION */
+.caption {
+  margin-top: 15px;
+  font-size: 20px;
+  color: #444;
+  text-align: center;
+  max-width: 800px;
+}
+
+/* =========================
+   THUMBNAILS
+========================= */
+
+.thumbs {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.thumbs img {
+  width: 200px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s, border 0.2s, opacity 0.2s;
+  opacity: 0.7;
+}
+
+.thumbs img:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.thumbs img.active {
+  border: 2px solid #111;
+  opacity: 1;
+}
+
+/* =========================
+   LIGHTBOX
+========================= */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+  z-index: 9999;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-image {
+  max-width: 92%;
+  max-height: 92%;
+  transform: scale(0.96);
+  transition: transform 0.25s ease;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.lightbox.active .lightbox-image {
+  transform: scale(1);
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.35);
+  color: white;
+  font-size: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10000;
+}
+
+.lightbox-arrow:hover {
+  background: rgba(0,0,0,0.55);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.lightbox-arrow.left { left: 20px; }
+.lightbox-arrow.right { right: 20px; }
+
+.lightbox-caption {
+  margin-top: 15px;
+  color: white;
+  font-size: 20px;
+  opacity: 0.85;
+  text-align: center;
+  max-width: 80%;
+}
+
+/* CAPTION FADE */
+.caption,
+.lightbox-caption {
+  transition: opacity 0.25s ease;
+}
+
+.caption.fade,
+.lightbox-caption.fade {
+  opacity: 0;
+}
+
+/* =========================
+   FOLIO CAROUSEL
+========================= */
+
+.folio-carousel-section {
+  width: 100%;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.folio-carousel-title {
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  margin: 0 0 15px 0;
+}
+
+.folio-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.folio-carousel-track-container {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 10px 0 10px;
+}
+
+.folio-carousel-track {
+  display: flex;
+  gap: 20px;
+}
+
+.folio-carousel-card {
+  flex: 0 0 150px;
+}
+
+.folio-carousel-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.35s ease;
+}
+
+.folio-carousel-card:hover img {
+  transform: scale(1.05);
+}
+
+.folio-carousel-card span {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+/* hide active project */
+.folio-carousel-card[data-folio-active="true"] {
+  display: none;
+}
+
+/* =========================
+   ARROWS
+========================= */
+
+.folio-carousel-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.9);
+  color: #111;
+  transition: opacity 0.3s ease;
+}
+
+.folio-carousel-btn:hover {
+  opacity: 0.8;
+}
+
+.folio-carousel-prev { margin-right: 14px; }
+.folio-carousel-next { margin-left: 14px; }
+
+/* =========================
+   DOTS
+========================= */
+
+.folio-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.folio-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+
+.folio-carousel-dot.active {
+  background: rgba(0,0,0,0.9);
+}
+
+/* =========================
+   UTILITIES
+========================= */
+
+.folio-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.folio-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0,0,0,0.2),
+    transparent
+  );
+  margin: 25px 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+  .folio-carousel-card {
+    flex: 0 0 25%;
+  }
+}
+
+@media (max-width: 700px) {
+  .folio-carousel-card {
+    flex: 0 0 40%;
+  }
+}
+
+@media (max-width: 480px) {
+  .folio-carousel-card {
+    flex: 0 0 85%;
+  }
+
+  .folio-carousel-btn {
+    display: none;
+  }
+}
+</style>
+
+<body>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="index.html#home" class="w3-bar-item w3-button"><b>TheMattEmpire</b> Projects & Folio</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html#projects" class="w3-bar-item w3-button">Projects</a>
+      <a href="index.html#folio" class="w3-bar-item w3-button">Folio</a>
+      <a href="index.html#about" class="w3-bar-item w3-button">About Me</a>
+      <a href="index.html#contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+  </div>
+</div>
+
+<header class="page-header">
+  <h1><br><b>PBR Low Poly</b> | Flying Mustang</h1>
+</header>
+
+<main class="gallery">
+
+ <!-- MAIN IMAGE -->
+ <div class="main-view">
+
+  <div class="image-container">
+
+    <!-- LEFT -->
+    <button class="nav-arrow left-arrow" onclick="previousImage()">
+      &#10094;
+    </button>
+
+    <!-- IMAGE -->
+    <img id="mainImage"
+     src="images/folio/mustang_perspective.jpg"
+     alt="Project Image"
+     loading="eager"
+     onclick="openLightbox()">
+
+    <!-- RIGHT -->
+    <button class="nav-arrow right-arrow" onclick="nextImage()">
+      &#10095;
+    </button>
+
+  </div>
+
+</div>
+
+  <!-- Caption -->
+  <div id="caption" class="caption">
+    Front view.
+  </div>
+
+</div>
+
+  <div class="thumbs">
+
+    <img src="images/folio/mustang_perspective_sm.jpg" loading="lazy" onclick="changeImage(0)">
+    <img src="images/folio/mustang_perspective_rear_sm.jpg" loading="lazy" onclick="changeImage(1)">
+    <img src="images/folio/mustang_wireframe_sm.jpg" loading="lazy" onclick="changeImage(2)">
+
+  </div>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+
+  <!-- LEFT -->
+  <button class="lightbox-arrow left" onclick="event.stopPropagation(); prevLightboxImage()">
+    &#10094;
+  </button>
+
+  <!-- CONTENT WRAPPER -->
+  <div class="lightbox-content" onclick="event.stopPropagation()">
+
+    <img id="lightboxImage" class="lightbox-image">
+
+    <!-- SHARED CAPTION (same data source as main page) -->
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <button class="lightbox-arrow right" onclick="event.stopPropagation(); nextLightboxImage()">
+    &#10095;
+  </button>
+
+</div>
+</div>
+<div class="folio-divider"></div>
+<section class="folio-carousel-section">
+
+  <h2 class="folio-carousel-title">Other Folio Projects</h2>
+
+  <div class="folio-carousel-wrapper">
+
+    <button class="folio-carousel-btn folio-carousel-prev">
+      &#10094;
+    </button>
+
+    <div class="folio-carousel-track-container">
+      <div class="folio-carousel-track">
+
+        <!-- CURRENT PAGE -->
+        <a href="folio_mustang.html"
+           class="folio-carousel-card"
+           data-folio-active="true">
+
+          <img src="images/folio/list_mustang.jpg" alt="">
+          <span>Project 1</span>
+        </a>
+
+        <!-- OTHER PROJECTS -->
+        <a href="folio_tank.html" class="folio-carousel-card">
+          <img src="images/folio/list_tank.jpg" alt="">
+          <span>Project 1</span>
+        </a>
+
+        <a href="folio_caleb.html" class="folio-carousel-card">
+          <img src="images/folio/list_caleb.jpg" alt="">
+          <span>Project 3</span>
+        </a>
+
+        <a href="folio_thug.html" class="folio-carousel-card">
+          <img src="images/folio/list_thug.jpg" alt="">
+          <span>Project 3</span>
+        </a>
+
+        <a href="folio_mersharr.html" class="folio-carousel-card">
+          <img src="images/folio/list_mersharr.jpg" alt="">
+          <span>Project 5</span>
+        </a>
+
+        <a href="folio_freelance.html" class="folio-carousel-card">
+          <img src="images/folio/list_freelance.jpg" alt="">
+          <span>Project 6</span>
+        </a>
+
+        <a href="folio_hexgallery.html" class="folio-carousel-card">
+          <img src="images/folio/list_hexgallery.jpg" alt="">
+          <span>Project 7</span>
+        </a>
+
+        <a href="folio_optimisedcars.html" class="folio-carousel-card">
+          <img src="images/folio/list_optimisedcars.jpg" alt="">
+          <span>Project 8</span>
+        </a>
+
+      </div>
+    </div>
+
+    <button class="folio-carousel-btn folio-carousel-next">
+      &#10095;
+    </button>
+
+  </div>
+
+  <div class="folio-carousel-dots"></div>
+
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =========================
+     MAIN GALLERY
+  ========================= */
+
+  const mainImage = document.getElementById("mainImage");
+  const caption = document.getElementById("caption");
+  const thumbs = document.querySelectorAll(".thumbs img");
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const lightboxCaption = document.getElementById("lightboxCaption");
+
+  let currentIndex = 0;
+
+/* Gallery data (easy to expand) */
+const galleryData = [
+  {
+    src: "images/folio/mustang_perspective.jpg",
+    text: "Front view."
+  },
+  {
+    src: "images/folio/mustang_perspective_rear.jpg",
+    text: "Rear view."
+  },
+  {
+    src: "images/folio/mustang_wireframe.jpg",
+    text: "Wireframe and textures."
+  }
+];
+
+  /* =========================
+     THUMB ACTIVE STATE
+  ========================= */
+
+  function updateActiveThumb(index) {
+    thumbs.forEach(t => t.classList.remove("active"));
+
+    if (thumbs[index]) {
+      thumbs[index].classList.add("active");
+    }
+  }
+
+  /* =========================
+     IMAGE CHANGE
+  ========================= */
+
+  function changeImage(index) {
+
+    currentIndex = index;
+
+    mainImage.style.opacity = 0;
+
+    setTimeout(() => {
+
+      mainImage.src = galleryData[index].src;
+
+      mainImage.style.opacity = 1;
+
+      updateActiveThumb(index);
+
+    }, 200);
+
+    caption.classList.add("fade");
+
+    setTimeout(() => {
+
+      caption.textContent = galleryData[index].text;
+
+      caption.classList.remove("fade");
+
+    }, 150);
+
+    preloadAdjacent(index);
+  }
+
+  /* =========================
+     NEXT / PREVIOUS
+  ========================= */
+
+  function nextImage() {
+
+    currentIndex =
+      (currentIndex + 1) % galleryData.length;
+
+    changeImage(currentIndex);
+  }
+
+  function previousImage() {
+
+    currentIndex =
+      (currentIndex - 1 + galleryData.length) %
+      galleryData.length;
+
+    changeImage(currentIndex);
+  }
+
+  /* =========================
+     PRELOAD
+  ========================= */
+
+  function preloadImage(src) {
+    const img = new Image();
+    img.src = src;
+  }
+
+  function preloadAdjacent(index) {
+
+    const next =
+      (index + 1) % galleryData.length;
+
+    const prev =
+      (index - 1 + galleryData.length) %
+      galleryData.length;
+
+    preloadImage(galleryData[next].src);
+    preloadImage(galleryData[prev].src);
+  }
+
+  /* =========================
+     LIGHTBOX
+  ========================= */
+
+  function openLightbox() {
+
+    updateLightboxImage();
+
+    lightbox.classList.add("active");
+  }
+
+  function closeLightbox() {
+
+    lightbox.classList.remove("active");
+  }
+
+  function updateLightboxImage() {
+
+    const data = galleryData[currentIndex];
+
+    lightboxImage.src = data.src;
+
+    lightboxCaption.classList.add("fade");
+
+    setTimeout(() => {
+
+      lightboxCaption.textContent = data.text;
+
+      lightboxCaption.classList.remove("fade");
+
+    }, 150);
+  }
+
+  function nextLightboxImage() {
+
+    currentIndex =
+      (currentIndex + 1) % galleryData.length;
+
+    updateLightboxImage();
+  }
+
+  function prevLightboxImage() {
+
+    currentIndex =
+      (currentIndex - 1 + galleryData.length) %
+      galleryData.length;
+
+    updateLightboxImage();
+  }
+
+  /* =========================
+     KEYBOARD
+  ========================= */
+
+  document.addEventListener("keydown", (e) => {
+
+    if (!lightbox.classList.contains("active")) {
+
+      if (e.key === "ArrowRight") {
+        nextImage();
+      }
+
+      if (e.key === "ArrowLeft") {
+        previousImage();
+      }
+
+      return;
+    }
+
+    if (e.key === "Escape") {
+      closeLightbox();
+    }
+
+    if (e.key === "ArrowRight") {
+      nextLightboxImage();
+    }
+
+    if (e.key === "ArrowLeft") {
+      prevLightboxImage();
+    }
+  });
+
+  /* =========================
+     SWIPE SUPPORT
+  ========================= */
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  mainImage.addEventListener("touchstart", (e) => {
+
+    touchStartX =
+      e.changedTouches[0].screenX;
+  });
+
+  mainImage.addEventListener("touchend", (e) => {
+
+    touchEndX =
+      e.changedTouches[0].screenX;
+
+    const swipeDistance =
+      touchEndX - touchStartX;
+
+    if (Math.abs(swipeDistance) < 50) return;
+
+    if (swipeDistance < 0) {
+      nextImage();
+    } else {
+      previousImage();
+    }
+  });
+
+  /* =========================
+     INIT GALLERY
+  ========================= */
+
+  updateActiveThumb(0);
+  preloadAdjacent(0);
+  changeImage(0);
+
+  /* =========================
+     FOLIO CAROUSEL
+  ========================= */
+
+  const folioTrack =
+    document.querySelector(".folio-carousel-track");
+
+  const folioCards =
+    [...document.querySelectorAll(".folio-carousel-card")]
+      .filter(card =>
+        card.dataset.folioActive !== "true"
+      );
+
+  const folioPrevBtn =
+    document.querySelector(".folio-carousel-prev");
+
+  const folioNextBtn =
+    document.querySelector(".folio-carousel-next");
+
+  const folioDotsContainer =
+    document.querySelector(".folio-carousel-dots");
+
+  let folioIndex = 0;
+
+  function folioGetVisibleCards() {
+
+    if (window.innerWidth <= 480) return 1;
+    if (window.innerWidth <= 700) return 2;
+    if (window.innerWidth <= 1000) return 3;
+
+    return 4;
+  }
+
+  function folioUpdateDots() {
+
+    const dots =
+      document.querySelectorAll(".folio-carousel-dot");
+
+    const visibleCards =
+      folioGetVisibleCards();
+
+    const activePage =
+      Math.floor(folioIndex / visibleCards);
+
+    dots.forEach((dot, i) => {
+
+      dot.classList.toggle(
+        "active",
+        i === activePage
+      );
+    });
+  }
+
+  function folioUpdateArrows() {
+
+    const visibleCards =
+      folioGetVisibleCards();
+
+    const totalCards =
+      folioCards.length;
+
+    const hide =
+      totalCards <= visibleCards;
+
+    folioPrevBtn.style.display =
+      hide ? "none" : "";
+
+    folioNextBtn.style.display =
+      hide ? "none" : "";
+  }
+
+  function folioUpdateCarousel() {
+
+    if (!folioCards.length) return;
+
+    const cardWidth =
+      folioCards[0].offsetWidth + 20;
+
+    folioTrack.style.transform =
+      `translateX(-${folioIndex * cardWidth}px)`;
+
+    folioUpdateDots();
+    folioUpdateArrows();
+  }
+
+  function folioCreateDots() {
+
+    folioDotsContainer.innerHTML = "";
+
+    const visibleCards =
+      folioGetVisibleCards();
+
+    const totalPages =
+      Math.ceil(
+        folioCards.length / visibleCards
+      );
+
+    if (totalPages <= 1) {
+
+      folioDotsContainer.style.display =
+        "none";
+
+      return;
+    }
+
+    folioDotsContainer.style.display =
+      "flex";
+
+    for (let i = 0; i < totalPages; i++) {
+
+      const dot =
+        document.createElement("div");
+
+      dot.classList.add("folio-carousel-dot");
+
+      dot.addEventListener("click", () => {
+
+        folioIndex =
+          i * visibleCards;
+
+        folioUpdateCarousel();
+      });
+
+      folioDotsContainer.appendChild(dot);
+    }
+
+    folioUpdateDots();
+  }
+
+  /* =========================
+     CAROUSEL BUTTONS
+  ========================= */
+
+  folioPrevBtn.addEventListener("click", () => {
+
+    if (folioIndex > 0) {
+
+      folioIndex--;
+
+      folioUpdateCarousel();
+    }
+  });
+
+  folioNextBtn.addEventListener("click", () => {
+
+    const visibleCards =
+      folioGetVisibleCards();
+
+    if (
+      folioIndex <
+      folioCards.length - visibleCards
+    ) {
+
+      folioIndex++;
+
+      folioUpdateCarousel();
+    }
+  });
+
+  /* =========================
+     RESIZE
+  ========================= */
+
+  window.addEventListener("resize", () => {
+
+    folioCreateDots();
+    folioUpdateCarousel();
+    folioUpdateArrows();
+  });
+
+  /* =========================
+     EXPOSE FUNCTIONS
+     FOR INLINE HTML
+  ========================= */
+
+  window.changeImage = changeImage;
+  window.nextImage = nextImage;
+  window.previousImage = previousImage;
+
+  window.openLightbox = openLightbox;
+  window.closeLightbox = closeLightbox;
+
+  window.nextLightboxImage =
+    nextLightboxImage;
+
+  window.prevLightboxImage =
+    prevLightboxImage;
+
+  /* =========================
+     INIT CAROUSEL
+  ========================= */
+
+  folioCreateDots();
+  folioUpdateCarousel();
+  folioUpdateArrows();
+
+});
+</script>
+
+</body>
+</html>
