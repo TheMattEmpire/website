@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <title>TheMattEmpire | Projects & Folio</title>
@@ -335,14 +335,23 @@
   overflow: hidden;
 }
 
-/* bottom nav */
+/* Push hero below the fixed navbar on small screens */
+@media (max-width: 600px) {
+  .hero {
+    margin-top: 50px;
+  }
+}
+
+/* bottom nav — sits 10px below the bottom edge of the centred 200px logo */
+/* hero center = 50%, half logo height = 100px, so logo bottom = 50%+100px, +10px gap */
 .bottom-links {
   position: absolute;
-  bottom: 1px;
+  top: calc(50% + 110px);
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   font-size: 16px;
+  white-space: nowrap;
   z-index: 3;
 }
 
@@ -358,6 +367,25 @@
   text-decoration: underline;
 }
 
+/* shrink nav text on narrow screens so it never wraps into the logo */
+@media (max-width: 480px) {
+  .bottom-links {
+    font-size: 12px;
+  }
+  .bottom-links a {
+    padding: 0 4px;
+  }
+}
+
+@media (max-width: 340px) {
+  .bottom-links {
+    font-size: 10px;
+  }
+  .bottom-links a {
+    padding: 0 2px;
+  }
+}
+
   </style>
 
   <script>
@@ -367,20 +395,30 @@ const dotsContainer = document.getElementById("dots");
 let index = 0;
 let startX = 0;
 
-// how many "pages" of 4 items
+// Determine how many items fit per page based on actual item width
+function getItemsPerPage() {
+  const item = gallery.children[0];
+  if (!item) return 4;
+  const containerWidth = gallery.clientWidth;
+  const itemWidth = item.offsetWidth;
+  return Math.max(1, Math.round(containerWidth / itemWidth));
+}
+
 function getPageCount() {
-  return Math.ceil(gallery.children.length / 4);
+  return Math.ceil(gallery.children.length / getItemsPerPage());
 }
 
 // scroll to page
 function goToPage(i) {
   const max = getPageCount() - 1;
-
   index = Math.max(0, Math.min(i, max));
 
-  const scrollAmount = gallery.clientWidth;
+  // Scroll by the width of one full "page" of visible items
+  const item = gallery.children[0];
+  const itemWidth = item ? item.offsetWidth : gallery.clientWidth;
+  const itemsPerPage = getItemsPerPage();
   gallery.scrollTo({
-    left: index * scrollAmount,
+    left: index * itemWidth * itemsPerPage,
     behavior: "smooth"
   });
 
@@ -392,25 +430,21 @@ function scrollGallery(dir) {
   goToPage(index + dir);
 }
 
-// dots
-function createDots() {
+// dots — rebuild when viewport resizes
+function buildDots() {
+  dotsContainer.innerHTML = "";
   const count = getPageCount();
-
   for (let i = 0; i < count; i++) {
     const dot = document.createElement("span");
     dot.classList.add("dot");
-
     dot.addEventListener("click", () => goToPage(i));
-
     dotsContainer.appendChild(dot);
   }
-
   updateDots();
 }
 
 function updateDots() {
   const dots = document.querySelectorAll(".dot");
-
   dots.forEach((d, i) => {
     d.classList.toggle("active", i === index);
   });
@@ -419,23 +453,29 @@ function updateDots() {
 // swipe support (mobile)
 gallery.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
-});
+}, { passive: true });
 
 gallery.addEventListener("touchend", (e) => {
-  let endX = e.changedTouches[0].clientX;
-  let diff = startX - endX;
-
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
   if (Math.abs(diff) > 50) {
-    if (diff > 0) {
-      goToPage(index + 1);
-    } else {
-      goToPage(index - 1);
-    }
+    goToPage(diff > 0 ? index + 1 : index - 1);
   }
 });
 
+// Rebuild dots on resize so page count stays accurate
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    index = 0;
+    buildDots();
+    goToPage(0);
+  }, 150);
+});
+
 // init
-createDots();
+buildDots();
 </script>
 
 </html>
